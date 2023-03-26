@@ -22,6 +22,7 @@ const ColumnList = ({ dispatch, currentColumns, availableColumns }) => {
 
       <div className='filter-columns-section'>
         <div className='current-columns'>
+          <span>Current</span>
           <select id='current-columns' multiple>
             {currentColumns.map(col =>
               <option
@@ -42,6 +43,7 @@ const ColumnList = ({ dispatch, currentColumns, availableColumns }) => {
         </div>
 
         <div className='available-columns'>
+          <span>Available</span>
           <select id='available-columns' multiple size='10'>
             {availableColumns.map(col =>
               <option key={col.order} value={col.order}>{col.text}</option>
