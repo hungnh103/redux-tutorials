@@ -4,15 +4,15 @@ import { increment, decrement, reset } from './actions'
 
 class Counter extends Component {
   increment = () => {
-    this.props.dispatch(increment())
+    this.props.increment()
   }
 
   decrement = () => {
-    this.props.dispatch(decrement())
+    this.props.decrement()
   }
 
   reset = () => {
-    this.props.dispatch(reset())
+    this.props.reset()
   }
 
   render() {
@@ -36,4 +36,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Counter)
+const mapDispatchToProps = {
+  increment,
+  decrement,
+  reset
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)
