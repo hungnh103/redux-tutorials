@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { addStaff } from '../stateManagement/actions'
 
-const AddItem = ({ dispatch }) => {
+const AddItem = ({ dispatch, addStaff }) => {
   const handleCreateStaff = (e) => {
     e.preventDefault()
 
@@ -14,7 +14,7 @@ const AddItem = ({ dispatch }) => {
       phone: formObject.querySelector('#phone').value,
       vehicle: formObject.querySelector('#vehicle').value
     }
-    dispatch(addStaff(staff))
+    addStaff(staff)
     formObject.reset()
   }
 
@@ -67,4 +67,6 @@ const AddItem = ({ dispatch }) => {
   )
 }
 
-export default connect()(AddItem)
+const mapDispatch = {addStaff}
+
+export default connect(null, mapDispatch)(AddItem)

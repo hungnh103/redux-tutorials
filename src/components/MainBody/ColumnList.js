@@ -1,27 +1,38 @@
 import { connect } from 'react-redux'
 import { removeColumns, addColumns } from '../../stateManagement/actions'
 
-const ColumnList = ({ dispatch, currentColumns, availableColumns }) => {
+const ColumnList = ({
+  dispatch,
+  currentColumns,
+  availableColumns,
+  removeColumns,
+  addColumns
+}) => {
   const handleRemoveColumns = () => {
     const removedOrders = Array.from(document.querySelectorAll('#current-columns option:checked'))
                            .map(item => Number(item.value))
 
-    dispatch(removeColumns(removedOrders))
+    removeColumns(removedOrders)
   }
 
   const handleAddColumns = () => {
     const addedOrders = Array.from(document.querySelectorAll('#available-columns option:checked'))
                              .map(item => Number(item.value))
 
-    dispatch(addColumns(addedOrders))
+    addColumns(addedOrders)
   }
 
   return (
     <div className='column-list-wrapper'>
       <h3>Column List</h3>
+      <span style={{fontSize: '9pt'}}><i>Shift + Click</i> to select by range</span>
+      <br />
+      <span style={{fontSize: '9pt'}}><i>Ctrl + Click</i> to select multiple</span>
+      <br />
+      <br />
 
       <div className='filter-columns-section'>
-        <div className='current-columns'>
+        <div className='current-columns column-list'>
           <span>Current</span>
           <select id='current-columns' multiple>
             {currentColumns.map(col =>
@@ -42,7 +53,7 @@ const ColumnList = ({ dispatch, currentColumns, availableColumns }) => {
           <button onClick={handleRemoveColumns}>⇒</button>
         </div>
 
-        <div className='available-columns'>
+        <div className='available-columns column-list'>
           <span>Available</span>
           <select id='available-columns' multiple size='10'>
             {availableColumns.map(col =>
@@ -60,4 +71,9 @@ const mapSomeStates = state => ({
   availableColumns: state.availableColumns
 })
 
-export default connect(mapSomeStates)(ColumnList)
+const mapThoseDispatches = {
+  removeColumns,
+  addColumns
+}
+
+export default connect(mapSomeStates, mapThoseDispatches)(ColumnList)

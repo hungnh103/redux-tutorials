@@ -16,7 +16,6 @@ export const addStaff = (staff) => ({
   staffData: staff
 })
 
-
 export const removeColumns = (orders) => ({
   type: REMOVE_COLUMNS,
   removedOrders: orders

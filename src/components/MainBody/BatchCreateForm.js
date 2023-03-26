@@ -1,19 +1,24 @@
 import { connect } from 'react-redux'
 import { inputNumber, batchGenerate } from '../../stateManagement/actions'
 
-const BatchCreateForm = ({ wantedRecordNumber, dispatch }) => {
+const BatchCreateForm = ({
+  dispatch,
+  wantedRecordNumber,
+  inputNumber,
+  batchGenerate
+}) => {
   const handleInputNumber = (e) => {
-    dispatch(inputNumber(Number(e.target.value)))
+    inputNumber(Number(e.target.value))
   }
 
   const handleBatchGenerate = (e) => {
     e.preventDefault()
-    dispatch(batchGenerate())
+    batchGenerate()
   }
 
   return (
     <div>
-      <h3>Batch create data</h3>
+      <h3>Generate random data</h3>
       <form onSubmit={handleBatchGenerate}>
         Number of records:
         <input
@@ -30,5 +35,9 @@ const BatchCreateForm = ({ wantedRecordNumber, dispatch }) => {
 }
 
 const mapStateToProps = (state) => ({ wantedRecordNumber: state.wantedRecordNumber })
+const mapDispatches = {
+  inputNumber,
+  batchGenerate
+}
 
-export default connect(mapStateToProps)(BatchCreateForm)
+export default connect(mapStateToProps, mapDispatches)(BatchCreateForm)
