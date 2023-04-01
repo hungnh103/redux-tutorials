@@ -1,3 +1,3 @@
-# Redux Tutorials
+# Guideline
 
-Switch to each branch to view tutorials in detail
+https://dev.to/raaynaldo/redux-toolkit-setup-tutorial-5fjf
