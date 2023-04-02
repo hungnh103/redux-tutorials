@@ -1,9 +1,28 @@
 import { connect } from 'react-redux'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App({ dispatch, posts }) {
   const [value, setValue] = useState('')
   const [id, setId] = useState(2)
+
+  useEffect(() => {
+    fetchData()
+  })
+
+  const fetchData = async () => {
+    const url = 'https://jsonplaceholder.typicode.com/posts'
+
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      dispatch({
+        type: 'LOAD_POSTS',
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleInputData = (e) => {
     setValue(e.target.value)
@@ -34,8 +53,8 @@ function App({ dispatch, posts }) {
       </form>
 
       <ul>
-        {posts.map(post =>
-          <li key={post.id}>{post.title}</li>
+        {posts.map((post, index) =>
+          <li key={post.id}>{index} {post.title}</li>
         )}
       </ul>
     </div>

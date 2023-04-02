@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 const initialState = {
   posts: [
     {
-      id: 1,
+      id: 0,
       title: 'Test post'
     }
   ],
@@ -17,6 +17,14 @@ const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       posts: state.posts.concat(action.payload)
     })
+  }
+
+  if (action.type === 'LOAD_POSTS') {
+    return {
+      ...state,
+      posts: action.payload
+      // posts: state.posts.concat(action.payload)
+    }
   }
 
   return state
