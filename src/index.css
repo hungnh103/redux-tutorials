@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+li span:hover {
+  cursor: pointer;
+}
+
+.done-item {
+  text-decoration: line-through;
+}
