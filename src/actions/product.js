@@ -22,8 +22,7 @@ export function fetchProducts() {
     return fetch('http://localhost:5000/products')
       .then(response => response.json())
       .then(data => {
-        dispatch(fetchProductsSuccess(data.products))
-        return data.products
+        setTimeout(() => { dispatch(fetchProductsSuccess(data)) }, 500)
       })
       .catch(error => dispatch(fetchProductsFailure(error)))
   }
