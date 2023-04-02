@@ -1,7 +1,12 @@
 import { createStore } from 'redux'
 
 const initialState = {
-  posts: [],
+  posts: [
+    {
+      id: 1,
+      title: 'Test post'
+    }
+  ],
   signUpModal: {
     open: false
   }
