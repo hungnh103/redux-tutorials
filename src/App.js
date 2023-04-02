@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector, useDispatch } from 'react-redux'
+import { addition, subtraction } from './counterSlice'
 
 function App() {
+  const number = useSelector(state => state.tenGiCungDuoc.value)
+
+  const loadDispatch = useDispatch()
+
+  const handleIncrement = () => {
+    loadDispatch(addition())
+  }
+
+  const handleDecrement = () => {
+    loadDispatch(subtraction())
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={handleIncrement}>+</button>
+      <span>{number}</span>
+      <button onClick={handleDecrement}>-</button>
     </div>
   );
 }
